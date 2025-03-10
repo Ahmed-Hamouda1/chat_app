@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 class CustomTextFaild extends StatelessWidget 
 {
   final String hintText;
-  const CustomTextFaild
+  CustomTextFaild
   (
     {
-      super.key, required this.hintText,
+      super.key, required this.hintText, this.onChange
     }
   );
+  Function(String)? onChange;
 
   @override
   Widget build(BuildContext context) 
@@ -18,6 +19,8 @@ class CustomTextFaild extends StatelessWidget
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextField
       (
+        style: TextStyle(color: Colors.white),
+        onChanged: onChange,
         decoration: InputDecoration
         (   
           hintText: hintText,
@@ -29,13 +32,11 @@ class CustomTextFaild extends StatelessWidget
           focusedBorder: const OutlineInputBorder
           (
             borderSide: BorderSide(color: Colors.white),
-            
           ) ,
           border:const OutlineInputBorder
           (
             borderSide: BorderSide(color: Colors.white),
           ),
-          
         ),
       ),
     );

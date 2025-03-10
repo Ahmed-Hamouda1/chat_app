@@ -46,9 +46,9 @@ class LoginPage extends StatelessWidget
               ],
             ),
             const SizedBox(height: 10,),
-            const CustomTextFaild(hintText: "Email",),
-            const CustomTextFaild(hintText: "password",),
-            const CustomButton(title: "LOGIN",),
+            CustomTextFaild(hintText: "Email",),
+            CustomTextFaild(hintText: "password",),
+            CustomButton(title: "LOGIN",),
             Padding
             (
               padding: const EdgeInsets.all(10),
