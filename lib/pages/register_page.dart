@@ -1,5 +1,6 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/pages/login_page.dart';
+import 'package:chat_app/services/methods.dart';
 import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_faild.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,8 +18,7 @@ class RegisterPage extends StatefulWidget
 
 class _RegisterPageState extends State<RegisterPage> {
   String id="RegisterPage";
-  String? email;
-  String? pass;
+  String? email,pass;
   bool isLoading= false;
   GlobalKey<FormState> formKey = GlobalKey();
 
@@ -159,10 +159,6 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
-  }
-
-  void showSnackBar(BuildContext context,String Message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(Message)));
   }
 
   Future<void> createAccount() async {

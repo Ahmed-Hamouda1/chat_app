@@ -19,6 +19,7 @@ class CustomTextFaild extends StatelessWidget
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField
       (
+        //keyboardType: TextInputType.,
         validator: (data)
         {
           if(data!.isEmpty)
