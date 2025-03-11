@@ -17,8 +17,15 @@ class CustomTextFaild extends StatelessWidget
   {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextField
+      child: TextFormField
       (
+        validator: (data)
+        {
+          if(data!.isEmpty)
+            return "is empty";
+          if(data.endsWith("@gmail.com"))
+            return "check your input is correct";
+        },
         style: TextStyle(color: Colors.white),
         onChanged: onChange,
         decoration: InputDecoration
