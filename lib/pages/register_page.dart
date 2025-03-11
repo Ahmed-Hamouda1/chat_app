@@ -4,136 +4,157 @@ import 'package:chat_app/widgets/custom_button.dart';
 import 'package:chat_app/widgets/custom_text_faild.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 
-class RegisterPage extends StatelessWidget 
+class RegisterPage extends StatefulWidget 
 {
   RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   String id="RegisterPage";
   String? email;
   String? pass;
-
+  bool isLoading= false;
   GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) 
   {
-    return Scaffold
+    return ModalProgressHUD
     (
-      backgroundColor:kPColor,
-      body: Padding
+      color: Colors.black,
+      inAsyncCall: isLoading,
+      child: Scaffold
       (
-        padding: const EdgeInsets.all(10),
-        child: Form
+        backgroundColor:kPColor,
+        body: Padding
         (
-          key: formKey,
-          child: Column
+          padding: const EdgeInsets.all(10),
+          child: Form
           (
-            
-            //mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: 
-            [
-              const Spacer(flex:2),
-              Image.asset("assets/images/scholar.png"),
-              const Text
-              (
-                "Scholar Chat",
-                style: TextStyle(
-                    color: Colors.white, fontSize: 30, fontFamily:"Pacifico"),
-              ),
-              const Spacer(flex:2),
-              //const SizedBox(height: 100,),
-              const Row
-              (
-                children: [
-                  Text
-                  (
-                    "Register",
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 20),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10,),
-              CustomTextFaild
-              (
-                hintText: "Email",
-                onChange: (value)
-                {
-                  email=value;
-                },
-              ),
-              CustomTextFaild
-              (
-                hintText: "password",
-                onChange: (value)
-                {
-                  pass=value;
-                },
-              ),
-              CustomButton
-              (
-                title: "Register",
-                onTap: () async
-                {
-                  if (formKey.currentState!.validate()) 
-                  {
-                    try 
-                    {
-                      await createAccount();
-                    }on FirebaseAuthException catch (e) 
-                    {
-                      if (e.code == 'weak-password') 
-                      {
-                              
-                        showSnackBar(context,'The password provided is too weak.');
-                      } else if (e.code == 'email-already-in-use') 
-                      {
-                        showSnackBar(context,'The account already exists for that email.');
-                      }
-                    }
-                    catch (e) 
-                    {
-                      showSnackBar(context,e.toString());
-                    }
-                      showSnackBar(context,'success');
-                  }
-                  else
-                  {
-
-                  }
-                },
-              ),
-              Padding
-              (
-                padding: const EdgeInsets.all(10),
-                child: Row
-                (mainAxisAlignment: MainAxisAlignment.center,
-                  children: 
-                  [
-                    const Text("already have an account ? ",style: TextStyle(color: Colors.white),),
-                    GestureDetector
+            key: formKey,
+            child: Column
+            (
+              
+              //mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: 
+              [
+                const Spacer(flex:2),
+                Image.asset("assets/images/scholar.png"),
+                const Text
+                (
+                  "Scholar Chat",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 30, fontFamily:"Pacifico"),
+                ),
+                const Spacer(flex:2),
+                //const SizedBox(height: 100,),
+                const Row
+                (
+                  children: [
+                    Text
                     (
-                      onTap: ()
-                      {
-                        Navigator.pushNamed(context, LoginPage().id);
-                      }, 
-                      child: const Text
-                      (
-                        "  Login",
-                        style: TextStyle
-                        (
-                          color: Color(0xffC7EDE6),
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
+                      "Register",
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                          color: Colors.white, fontSize: 20),
                     ),
                   ],
                 ),
-              ),
-              const Spacer(flex:2),
-            ],
+                const SizedBox(height: 10,),
+                CustomTextFaild
+                (
+                  hintText: "Email",
+                  onChange: (value)
+                  {
+                    email=value;
+                  },
+                ),
+                CustomTextFaild
+                (
+                  hintText: "password",
+                  onChange: (value)
+                  {
+                    pass=value;
+                  },
+                ),
+                CustomButton
+                (
+                  title: "Register",
+                  onTap: () async
+                  {
+                    if (formKey.currentState!.validate()) 
+                    {
+                      isLoading= true;
+                      setState(() {
+                        
+                      });
+                      try 
+                      {
+                        await createAccount();
+                        showSnackBar(context,'success');
+                      }on FirebaseAuthException catch (e) 
+                      { 
+                        if (e.code == 'weak-password') 
+                        {
+                                
+                          showSnackBar(context,'The password provided is too weak.');
+                        } else if (e.code == 'email-already-in-use') 
+                        {
+                          showSnackBar(context,'The account already exists for that email.');
+                        }
+                      }
+                      catch (e) 
+                      {
+                        showSnackBar(context,e.toString());
+                      }
+                      isLoading= false;
+                      setState(() {
+                        
+                      });
+                    }
+                    else
+                    {
+      
+                    }
+                  },
+                ),
+                Padding
+                (
+                  padding: const EdgeInsets.all(10),
+                  child: Row
+                  (mainAxisAlignment: MainAxisAlignment.center,
+                    children: 
+                    [
+                      const Text("already have an account ? ",style: TextStyle(color: Colors.white),),
+                      GestureDetector
+                      (
+                        onTap: ()
+                        {
+                          Navigator.pushNamed(context, LoginPage().id);
+                        }, 
+                        child: const Text
+                        (
+                          "  Login",
+                          style: TextStyle
+                          (
+                            color: Color(0xffC7EDE6),
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(flex:2),
+              ],
+            ),
           ),
         ),
       ),

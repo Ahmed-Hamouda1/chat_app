@@ -23,8 +23,6 @@ class CustomTextFaild extends StatelessWidget
         {
           if(data!.isEmpty)
             return "is empty";
-          if(data.endsWith("@gmail.com"))
-            return "check your input is correct";
         },
         style: TextStyle(color: Colors.white),
         onChanged: onChange,
