@@ -6,13 +6,16 @@ class CustomTextFaild extends StatelessWidget
   final String hintText;
   Color pColor=Colors.white;
   Widget? suffix;
+  TextEditingController? controller=TextEditingController();
+
   CustomTextFaild
   (
     {
-      super.key, required this.hintText, this.onChange , required this.pColor,this.suffix
+      super.key, required this.hintText, this.onChange ,this.onSubmited, this.controller,required this.pColor,this.suffix,
     }
   );
   Function(String)? onChange;
+  Function(String)? onSubmited;
 
   @override
   Widget build(BuildContext context) 
@@ -21,6 +24,7 @@ class CustomTextFaild extends StatelessWidget
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField
       (
+        controller: controller,
         //keyboardType: TextInputType.,
         validator: (data)
         {
@@ -29,6 +33,7 @@ class CustomTextFaild extends StatelessWidget
         },
         style: TextStyle(color: pColor),
         onChanged: onChange,
+        onFieldSubmitted: onSubmited,
         decoration: InputDecoration
         (   
           suffixIcon: suffix,
