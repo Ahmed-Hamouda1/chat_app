@@ -9,6 +9,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatefulWidget 
 {
+  //عملناها استاتفول علشان صفحة اللودنج
   LoginPage({super.key});
   String id="LoginPage";
 
@@ -16,11 +17,10 @@ class LoginPage extends StatefulWidget
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  //String id="LoginPage";
+class _LoginPageState extends State<LoginPage> 
+{
   String? email,pass;
   bool isLoading=false;
-
   GlobalKey<FormState> formKey=GlobalKey();
 
   @override
@@ -47,20 +47,28 @@ class _LoginPageState extends State<LoginPage> {
                 const Text
                 (
                   "Scholar Chat",
-                  style: TextStyle(
-                      color: Colors.white, fontSize: 30, fontFamily:"Pacifico"),
+                  style: TextStyle
+                  (
+                      color: Colors.white, 
+                      fontSize: 30, 
+                      fontFamily:"Pacifico"
+                  ),
                 ),
                 const Spacer(flex:2),
                 //const SizedBox(height: 100,),
                 const Row
                 (
-                  children: [
+                  children: 
+                  [
                     Text
                     (
                       "LOGIN",
                       textAlign: TextAlign.end,
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 20),
+                      style: TextStyle
+                      (
+                        color: Colors.white, 
+                        fontSize: 20
+                      ),
                     ),
                   ],
                 ),
@@ -68,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                 CustomTextFaild
                 (
                   hintText: "Email",
+                  pColor: Colors.white,
                   onChange: (value)
                   {
                     email=value;
@@ -76,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                 CustomTextFaild
                 (
                   hintText: "password",
+                  pColor: Colors.white,
                   onChange: (value)
                   {
                     pass=value;

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class CustomTextFaild extends StatelessWidget 
 {
   final String hintText;
+  Color pColor=Colors.white;
+  Widget? suffix;
   CustomTextFaild
   (
     {
-      super.key, required this.hintText, this.onChange
+      super.key, required this.hintText, this.onChange , required this.pColor,this.suffix
     }
   );
   Function(String)? onChange;
@@ -25,23 +27,24 @@ class CustomTextFaild extends StatelessWidget
           if(data!.isEmpty)
             return "is empty";
         },
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: pColor),
         onChanged: onChange,
         decoration: InputDecoration
         (   
+          suffixIcon: suffix,
           hintText: hintText,
-          hintStyle: const TextStyle(color: Colors.grey),
-          enabledBorder:const OutlineInputBorder
+          hintStyle: TextStyle(color: Colors.grey),
+          enabledBorder: OutlineInputBorder
           (
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: pColor),
           ),
-          focusedBorder: const OutlineInputBorder
+          focusedBorder: OutlineInputBorder
           (
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: pColor),
           ) ,
-          border:const OutlineInputBorder
+          border:OutlineInputBorder
           (
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: pColor),
           ),
         ),
       ),

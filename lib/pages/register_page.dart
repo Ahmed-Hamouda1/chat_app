@@ -71,6 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 CustomTextFaild
                 (
                   hintText: "Email",
+                  pColor: Colors.white,
                   onChange: (value)
                   {
                     email=value;
@@ -79,6 +80,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 CustomTextFaild
                 (
                   hintText: "password",
+                  pColor: Colors.white,
                   onChange: (value)
                   {
                     pass=value;
