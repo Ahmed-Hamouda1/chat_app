@@ -6,12 +6,13 @@ class CustomTextFaild extends StatelessWidget
   final String hintText;
   Color pColor=Colors.white;
   Widget? suffix;
+  bool secure ;
   TextEditingController? controller=TextEditingController();
 
   CustomTextFaild
   (
     {
-      super.key, required this.hintText, this.onChange ,this.onSubmited, this.controller,required this.pColor,this.suffix,
+      super.key, required this.hintText, this.onChange ,this.onSubmited, this.controller,required this.pColor,this.suffix,this.secure=false
     }
   );
   Function(String)? onChange;
@@ -24,6 +25,7 @@ class CustomTextFaild extends StatelessWidget
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField
       (
+        obscureText: secure,
         controller: controller,
         //keyboardType: TextInputType.,
         validator: (data)

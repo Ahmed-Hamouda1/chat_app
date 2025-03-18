@@ -86,6 +86,7 @@ class _LoginPageState extends State<LoginPage>
                 (
                   hintText: "password",
                   pColor: Colors.white,
+                  secure: true,
                   onChange: (value)
                   {
                     pass=value;
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage>
                       {
                         await loginAccount();
                         showSnackBar(context,'success');
-                        Navigator.pushNamed(context, ChatPage().id);
+                        Navigator.pushNamed(context, ChatPage().id,arguments: email);
                       }on FirebaseAuthException catch (e) 
                       { 
                         if (e.code == 'user-not-found') 

@@ -81,6 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 (
                   hintText: "password",
                   pColor: Colors.white,
+                  secure: true,
                   onChange: (value)
                   {
                     pass=value;
